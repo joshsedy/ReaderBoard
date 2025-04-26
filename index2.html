@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSV Import from URL</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      word-wrap: break-word;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    th { background-color: #f4f4f4; }
+  </style>
+</head>
+<body>
+
+<h2>CSV Loaded from URL</h2>
+<div id="output">Loading...</div>
+
+<script>
+  const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRvXSK0IlQtaq9BqVmMKPiedtfNbTi4GPMjTqVdQb4q4LXzUw6um0U4qFkaSGqEFWgFfJUsi3f3kTT/pub?gid=2000888718&single=true&output=csv'; // Replace with your CSV URL
+
+  fetch(csvUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.text();
+    })
+    .then(text => {
+      const rows = text.split('\n').map(row => row.trim()).filter(row => row !== "");
+      if (rows.length === 0) {
+        document.getElementById('output').innerText = "The CSV file is empty.";
+        return;
+      }
+
+      const output = document.getElementById('output');
+      let table = '<table>';
+
+      const headers = rows[0].split(',').map(h => h.trim());
+      table += '<tr>';
+      headers.forEach(header => table += `<th>${header}</th>`);
+      table += '</tr>';
+
+      for (let i = 1; i < rows.length; i++) {
+        const cells = parseCSVRow(rows[i]);
+        if (cells.length === headers.length) {
+          table += '<tr>';
+          cells.forEach(cell => table += `<td>${cell}</td>`);
+          table += '</tr>';
+        }
+      }
+
+      table += '</table>';
+      output.innerHTML = table;
+    })
+    .catch(error => {
+      document.getElementById('output').innerText = "Error loading CSV.";
+      console.error("Fetch error:", error);
+    });
+
+  function parseCSVRow(row) {
+    const regex = /(?:,|\n|\r|^)(?:"([^"]*)"|([^",]*))/g;
+    let result = [];
+    let match;
+
+    while ((match = regex.exec(row)) !== null) {
+      result.push(match[1] ? match[1] : match[2]);
+    }
+
+    return result;
+  }
+</script>
+
+</body>
+</html>
