@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test CSV</title>
+</head>
+<body>
+  <h2>Reader Board Schedule</h2>
+  <div id="output">Loading CSV...</div>
+
+  <script>
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRvXSK0IlQtaq9BqVmMKPiedtfNbTi4GPMjTqVdQb4q4LXzUw6um0U4qFkaSGqEFWgFfJUsi3f3kTT/pub?gid=2000888718&single=true&output=csv";
+
+    fetch(csvUrl)
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load");
+        return res.text();
+      })
+      .then(csv => {
+        const rows = csv.trim().split("\n").map(r => r.split(","));
+        let html = "<table border='1'>";
+        rows.forEach((row, i) => {
+          html += "<tr>";
+          row.forEach(cell => {
+            html += i === 0 ? `<th>${cell}</th>` : `<td>${cell}</td>`;
+          });
+          html += "</tr>";
+        });
+        html += "</table>";
+        document.getElementById("output").innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById("output").innerText = "Error loading schedule.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
