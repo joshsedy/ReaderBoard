@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reader Board Schedule</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    td {
+      background-color: #fff;
+    }
+    #output {
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Reader Board Schedule</h2>
+<div id="output">Loading CSV...</div>
+
+<script>
+  const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRvXSK0IlQtaq9BqVmMKPiedtfNbTi4GPMjTqVdQb4q4LXzUw6um0U4qFkaSGqEFWgFfJUsi3f3kTT/pub?gid=2000888718&single=true&output=csv";
+
+  fetch(csvUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text();
+    })
+    .then(data => {
+      const rows = data.trim().split('\n').map(row => row.split(','));
+      if (rows.length === 0) {
+        document.getElementById('output').innerHTML = "<p>No data found.</p>";
+        return;
+      }
+
+      let html = '<table><thead><tr>';
+      rows[0].forEach(header => html += `<th>${header.trim()}</th>`);
+      html += '</tr></thead><tbody>';
+
+      for (let i = 1; i < rows.length; i++) {
+        html += '<tr>';
+        rows[i].forEach(cell => html += `<td>${cell.trim()}</td>`);
+        html += '</tr>';
+      }
+
+      html += '</tbody></table>';
+      document.getElementById('output').innerHTML = html;
+    })
+    .catch(error => {
+      document.getElementById('output').innerHTML = `<p>Error loading CSV: ${error.message}</p>`;
+      console.error("Fetch error:", error);
+    });
+</script>
+
+</body>
+</html>
