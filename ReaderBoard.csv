@@ -1,0 +1,22 @@
+﻿RowId,CaseNumber,PartyName,PartyConnection,HearingType,CourtRoom,HearingDate,HearingStartTime
+1,25-1-00009-14,"ALEXANDER, GEORGE",Defendant (WIP),3.5 Suppression Hearing,,5/2/2025,  8:30AM
+2,24-1-00211-14,"BERNAL BOJORQUEZ, HORACIO",Defendant (WIP),Review Hearing,,5/2/2025,  8:32AM
+3,24-1-00412-14,"CAMPBELL, PAUL ARNOLD",Defendant (WIP),Review Hearing,,5/2/2025,  3:00PM
+4,24-1-00062-14,"CAMPBELL, PAUL ARNOLD",Defendant (WIP),Review Hearing,,5/2/2025,  3:00PM
+5,24-1-00265-14,"HEDRICK, KIRK EDWARD",Defendant (WIP),3.5 Suppression Hearing,,5/2/2025, 10:00AM
+6,24-1-00206-14,"KLATUSH, DERRICK D",Defendant (WIP),3.5 Suppression Hearing,,5/2/2025,  8:30AM
+7,24-7-00165-14,,Involved Party,Guardianship Hearing,,5/2/2025,  9:00AM
+8,24-7-00166-14,,Involved Party,Guardianship Hearing,,5/2/2025,  9:00AM
+9,22-1-00314-14,"PERRY, JOHN ROBERT",Defendant (WIP),Motion Hearing,,5/2/2025,  8:30AM
+10,22-1-00496-14,"PERRY, JOHN ROBERT",Defendant (WIP),Readiness Hearing,,5/2/2025,  8:30AM
+11,24-7-00165-14,,Parent (WIP),Guardianship Hearing,,5/2/2025,  9:00AM
+12,24-7-00166-14,,Parent (WIP),Guardianship Hearing,,5/2/2025,  9:00AM
+13,24-7-00165-14,,Involved Party,Guardianship Hearing,,5/2/2025,  9:00AM
+14,24-7-00166-14,,Involved Party,Guardianship Hearing,,5/2/2025,  9:00AM
+15,24-7-00165-14,,Dependent (WIP),Guardianship Hearing,,5/2/2025,  9:00AM
+16,24-7-00166-14,,Dependent (WIP),Guardianship Hearing,,5/2/2025,  9:00AM
+17,24-7-00165-14,,Parent (WIP),Guardianship Hearing,,5/2/2025,  9:00AM
+18,24-7-00166-14,,Parent (WIP),Guardianship Hearing,,5/2/2025,  9:00AM
+19,24-1-00294-14,"RIOS, ERIK STUART",Defendant (WIP),Sentencing Hearing,,5/2/2025,  8:30AM
+20,24-1-00439-14,"WOMACK-EADY, ANDREW M",Defendant (WIP),3.6 Suppression,,5/2/2025,  8:30AM
+
